@@ -1,17 +1,19 @@
-# Auren for macOS, from Homebrew: brew install kvm404/auren/auren, then auren setup.
+# Auren for macOS, from Homebrew: brew install kvm404/auren/auren-macos, then auren setup.
 #
-# The source of truth is packaging/homebrew/auren.rb in https://github.com/kvm404/Auren. The brew
+# The source of truth is packaging/homebrew/auren-macos.rb in https://github.com/kvm404/Auren. The brew
 # workflow (.github/workflows/brew.yml) fills in the release's url and the checksum of GitHub's source
 # tarball for its tag, and pushes it to the tap https://github.com/kvm404/homebrew-auren.
 #
 # Homebrew installs the source and two small commands. `auren setup` runs install-macos.sh --brew from
 # that source: it builds Auren's Python environment in ~/.local/share/auren, Auren.app and its launch
 # agents for your user, which a formula can't do (it asks for the macOS permissions).
-class Auren < Formula
+#
+# It was called auren until 0.1.8: the tap's formula_renames.json moves those installs to auren-macos.
+class AurenMacos < Formula
   desc "Voice assistant: say what you want, and it uses your Mac"
   homepage "https://github.com/kvm404/Auren"
-  url "https://github.com/kvm404/Auren/archive/refs/tags/v0.1.8.tar.gz"
-  sha256 "fa76a61815b745e8d6bac1873985f47eee74c58caf257482940a4372af89f159"
+  url "https://github.com/kvm404/Auren/archive/refs/tags/v0.1.9.tar.gz"
+  sha256 "29586d6ae7e14674a48ed80599f8d9ddb8787346f40c7c681169378ad9bcc524"
   license "MIT"
 
   depends_on arch: :arm64
@@ -40,7 +42,7 @@ class Auren < Formula
       Auren's setup window, which asks for the macOS permissions. Auren needs Claude Code
       or Codex as its brain.
 
-      After brew upgrade auren, run auren setup again (auren update does both).
+      After brew upgrade auren-macos, run auren setup again (auren update does both).
     EOS
   end
 
